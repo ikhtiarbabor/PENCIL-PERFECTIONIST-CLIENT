@@ -11,7 +11,7 @@ import {
 import { app } from '../../firebase.config.js/firebase.config';
 
 export const AuthContext = createContext(null);
-const AuthProvider = () => {
+const AuthProvider = ({children}) => {
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
@@ -48,7 +48,7 @@ const AuthProvider = () => {
     googleSignIn,
     user,
   };
-  return <AuthContext.Provider value={authInfo}></AuthContext.Provider>;
+  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
