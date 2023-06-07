@@ -2,6 +2,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const Banner = () => {
+  // TODO: ADD PARTICLE JS AND BANNER DETAILS TEXT 
   return (
     <div className='allContainer h-[570px]'>
       <Carousel autoPlay={true} infiniteLoop={true}>
