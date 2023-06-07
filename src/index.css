@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply btn bg-slate-800 hover:bg-slate-500 text-white;
+  }
+}
+.light-theme{
+  --main-bg:#fff
+  --text-color:-#
+}
+body{
+  background-color: var(--main-bg);
+}
