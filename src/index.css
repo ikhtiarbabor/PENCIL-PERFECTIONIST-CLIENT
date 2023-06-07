@@ -6,11 +6,7 @@
   .btn-primary {
     @apply btn bg-slate-800 hover:bg-slate-500 text-white;
   }
-}
-.light-theme{
-  --main-bg:#fff
-  --text-color:-#
-}
-body{
-  background-color: var(--main-bg);
+  .allContainer{
+    @apply max-w-7xl mx-auto px-3
+  }
 }
