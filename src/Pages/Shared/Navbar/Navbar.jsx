@@ -1,6 +1,16 @@
 import { Link, NavLink } from 'react-router-dom';
+import useAuthContext from '../../../hooks/useAuthContext';
+import { FaUserAlt } from 'react-icons/fa';
 
 const Navbar = () => {
+  const { user, logOut } = useAuthContext();
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const navBar = (
     <>
       <NavLink>Home</NavLink>
@@ -48,7 +58,44 @@ const Navbar = () => {
           <div className='menu menu-horizontal px-1'>{navBar}</div>
         </div>
         <div className='navbar-end'>
-          <Link to='/login'className=''>Login</Link>
+          {user ? (
+            <div className='dropdown dropdown-end'>
+              <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+                <div className='w-10 rounded-full border-red-600'>
+                  <img src={user?.photoURL || <FaUserAlt />} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className='mt-3 p-2 shadow menu menu-sm dropdown-content bg-slate-400 rounded-box w-52 z-50'
+              >
+                <li>
+                  <Link className='justify-between'>
+                    Profile
+                    <span className='badge'>New</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/dashboard/studentDashboard'
+                    className='justify-between'
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link>Settings</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link to='/login' className=''>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </header>

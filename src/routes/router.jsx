@@ -3,6 +3,14 @@ import MainLayout from '../Layouts/MainLayout/MainLayout';
 import Home from '../Pages/Home/Home/Home';
 import ErrorPage from '../Error/ErrorPage';
 import Login from '../Pages/Login/Login';
+import Register from '../Pages/Register/Register';
+import DashboardLayout from '../Layouts/Dashboard/DashboardLayout';
+import StudentHome from '../Pages/DashBoard/StudentHome/StudentHome';
+import StudentBookedClasses from '../Pages/DashBoard/StudentBookedClasses/StudentBookedClasses';
+import StudentEnrollClasses from '../Pages/DashBoard/StudentEnrollClasses/StudentEnrollClasses';
+import AdminDashboard from '../Pages/DashBoard/Admin/AdminDashboard/AdminDashboard';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -12,6 +20,37 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
+      { path: '/register', element: <Register /> },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: 'studentDashboard',
+        element: <StudentHome />,
+      },
+      {
+        path: 'studentBookedClasses',
+        element: <StudentBookedClasses />,
+      },
+      {
+        path: 'studentEnrollClasses',
+        element: <StudentEnrollClasses />,
+      },
+      {
+        path: 'adminDashBoard',
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
