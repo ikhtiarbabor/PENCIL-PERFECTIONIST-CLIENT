@@ -50,7 +50,7 @@ const Dashboard = () => {
   return (
     <div className='drawer'>
       <input id='my-drawer' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content allContainer'>
+      <div className='drawer-content'>
         <Outlet />
       </div>
       <label htmlFor='my-drawer' className='btn btn-primary drawer-button'>

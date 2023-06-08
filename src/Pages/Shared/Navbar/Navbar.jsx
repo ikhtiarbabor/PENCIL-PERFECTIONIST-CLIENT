@@ -1,8 +1,16 @@
 import { Link, NavLink } from 'react-router-dom';
 import useAuthContext from '../../../hooks/useAuthContext';
 import { FaUserAlt } from 'react-icons/fa';
+import useUserCk from '../../../hooks/useUserCk';
 
 const Navbar = () => {
+  const [userRole] = useUserCk();
+  const dashboard =
+    userRole === 'admin'
+      ? '/dashboard/adminDashBoard'
+      : userRole === 'student'
+      ? '/dashboard/studentDashboard'
+      : '/dashboard/instructorDashboard';
   const { user, logOut } = useAuthContext();
   const handleLogout = () => {
     logOut()
@@ -76,10 +84,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to='/dashboard/studentDashboard'
-                    className='justify-between'
-                  >
+                  <Link to={dashboard} className='justify-between'>
                     Dashboard
                   </Link>
                 </li>

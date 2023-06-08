@@ -11,6 +11,7 @@ import StudentEnrollClasses from '../Pages/DashBoard/StudentEnrollClasses/Studen
 import AdminDashboard from '../Pages/DashBoard/Admin/AdminDashboard/AdminDashboard';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
+import StudentsRoute from './StudentsRoute';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'studentDashboard',
-        element: <StudentHome />,
+        element: (
+          <StudentsRoute>
+            <StudentHome />
+          </StudentsRoute>
+        ),
       },
       {
         path: 'studentBookedClasses',
@@ -47,7 +52,7 @@ const router = createBrowserRouter([
         path: 'adminDashBoard',
         element: (
           <AdminRoute>
-            <AdminDashboard />
+            <AdminDashboard></AdminDashboard>
           </AdminRoute>
         ),
       },

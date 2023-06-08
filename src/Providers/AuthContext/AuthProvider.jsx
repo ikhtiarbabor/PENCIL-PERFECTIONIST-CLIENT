@@ -51,12 +51,14 @@ const AuthProvider = ({ children }) => {
             email: currentUser.email,
           })
           .then((res) => {
-            localStorage.setItem('token', res.data);
+            console.log(res.data);
+            localStorage.setItem('token', res.data.token);
             setLoading(false);
           });
       } else {
         localStorage.removeItem('token');
       }
+      setLoading(false);
     });
     return () => unSubscribed();
   }, [auth]);
