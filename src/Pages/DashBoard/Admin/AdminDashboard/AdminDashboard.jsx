@@ -6,7 +6,7 @@ import { RiAdminFill } from 'react-icons/ri';
 const AdminDashboard = () => {
   const { user, loading } = useAuthContext();
   const [secureURL] = useSecureUrl();
-  const { data: users = [], refetch } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ['users', user?.email],
     enabled: !loading,
     queryFn: async () => {

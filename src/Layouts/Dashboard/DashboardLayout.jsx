@@ -39,11 +39,17 @@ const Dashboard = () => {
       <NavLink to='/dashboard/adminDashBoard' className={btnClass}>
         Admin Dashboard
       </NavLink>
-      <NavLink to='/dashboard/studentBookedClasses' className={btnClass}>
-        Booked Classes
+      <NavLink to='/dashboard/allUser' className={btnClass}>
+        All User
       </NavLink>
-      <NavLink to='/dashboard/studentEnrollClasses' className={btnClass}>
-        Enrolled Classes
+      <NavLink to='/dashboard/allClasses' className={btnClass}>
+        All Classes
+      </NavLink>
+      <NavLink to='/dashboard/pendingClasses' className={btnClass}>
+        Pending Classes
+      </NavLink>
+      <NavLink to='/dashboard/rejectClasses' className={btnClass}>
+        Reject Classes
       </NavLink>
     </>
   );
