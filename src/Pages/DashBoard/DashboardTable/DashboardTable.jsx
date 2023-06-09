@@ -1,10 +1,11 @@
 import { GiTeacher } from 'react-icons/gi';
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { BiUser } from 'react-icons/bi';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import useSecureUrl from '../../../hooks/useSecureUrl';
 const DashboardTable = ({ tableHead, tableRow, refetch }) => {
+  const [secureURL] = useSecureUrl();
   const handleAdmin = async (id, role) => {
     const config = {
       headers: {
@@ -22,9 +23,9 @@ const DashboardTable = ({ tableHead, tableRow, refetch }) => {
         confirmButtonText: 'Yes',
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axios
+          await secureURL
             .patch(
-              `http://localhost:5000/users/adminUpdate/${id}`,
+              `/users/adminUpdate/${id}`,
               {
                 role: role,
               },
@@ -38,12 +39,8 @@ const DashboardTable = ({ tableHead, tableRow, refetch }) => {
         }
       });
     } else {
-      await axios
-        .patch(
-          `http://localhost:5000/users/adminUpdate/${id}`,
-          { role: role },
-          config
-        )
+      await secureURL
+        .patch(`/users/adminUpdate/${id}`, { role: role }, config)
         .then((res) => {
           if (res.data.modifiedCount === 1) {
             toast(`You Make this User as ${role}`);

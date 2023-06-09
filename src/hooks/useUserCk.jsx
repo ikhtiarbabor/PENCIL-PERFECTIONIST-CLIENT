@@ -4,12 +4,12 @@ import useSecureUrl from './useSecureUrl';
 
 const useUserCk = () => {
   const { user } = useAuthContext();
-  const [axiosSecure] = useSecureUrl();
+  const [secureURL] = useSecureUrl();
   // use axios secure with react query
   const { data: userRole, isLoading: isUserLoading } = useQuery({
     queryKey: ['userCk', user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/user/${user?.email}`);
+      const res = await secureURL.get(`/users/user/${user?.email}`);
       return res.data;
     },
   });
