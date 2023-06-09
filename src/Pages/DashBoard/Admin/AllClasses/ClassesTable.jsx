@@ -5,6 +5,7 @@ import { RxCross1 } from 'react-icons/rx';
 import Modal from '../Modal/Modal';
 import useSecureUrl from '../../../../hooks/useSecureUrl';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
   const [secureURL] = useSecureUrl();
   const handleStatus = async (id, status = 'reject') => {
@@ -19,7 +20,6 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
           }
         });
     } else if (status === 'reject') {
-      console.log(id);
       await secureURL
         .patch(`/allUser/updateStatus/${id}`, { status: 'reject' })
         .then((res) => {
@@ -29,6 +29,26 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
             refetch();
           }
         });
+    } else if (status === 'delete') {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert class!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#64748b',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete',
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await secureURL.delete(`/allUser/delete/${id}`).then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount === 1) {
+              Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+              refetch();
+            }
+          });
+        }
+      });
     }
   };
   return (
@@ -69,17 +89,24 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
                 ${data.price}
                 <br />
                 <span className='badge badge-ghost badge-sm'>
-                  <FaShoppingCart className='text-green-500'></FaShoppingCart>
+                  <MdAirlineSeatReclineExtra className='text-red-500' />
                   {data.seat}
                 </span>
                 <br />
                 <span className='badge badge-ghost badge-sm'>
-                  <MdAirlineSeatReclineExtra className='text-red-500' />
+                  <FaShoppingCart className='text-green-500'></FaShoppingCart>
                   {data.totalEnrolled}
                 </span>
               </td>
               <td>
-                {use === 'pending' ? (
+                {use === 'allClass' ? (
+                  <button
+                    onClick={() => handleStatus(data?._id, 'delete')}
+                    className='btn rounded-full border-red-700 text-red-700 bg-white text-base hover:bg-red-700 hover:text-white'
+                  >
+                    <AiFillDelete></AiFillDelete>
+                  </button>
+                ) : use === 'pending' ? (
                   <>
                     {' '}
                     <button
@@ -96,9 +123,20 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
                     </button>
                   </>
                 ) : (
-                  <button className='btn rounded-full border-red-700 text-red-700 bg-white text-base hover:bg-red-700 hover:text-white'>
-                    <AiFillDelete></AiFillDelete>
-                  </button>
+                  <>
+                    <button
+                      onClick={() => handleStatus(data?._id, 'approved')}
+                      className='btn rounded-full border-green-700 text-green-700 bg-white text-base hover:bg-green-700 hover:text-white mx-1'
+                    >
+                      <AiOutlineCheck></AiOutlineCheck>
+                    </button>
+                    <button
+                      onClick={() => handleStatus(data?._id, 'delete')}
+                      className='btn rounded-full border-red-700 text-red-700 bg-white text-base hover:bg-red-700 hover:text-white'
+                    >
+                      <AiFillDelete></AiFillDelete>
+                    </button>
+                  </>
                 )}
               </td>
               <th>

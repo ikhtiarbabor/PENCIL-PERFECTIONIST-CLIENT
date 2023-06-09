@@ -3,8 +3,14 @@ import { NavLink, Outlet } from 'react-router-dom';
 import '../../Pages/DashBoard/dashboardCss/DashBoard.css';
 import useUserCk from '../../hooks/useUserCk';
 
+import useAuthContext from '../../hooks/useAuthContext';
+
 const Dashboard = () => {
+  const { logOut, user } = useAuthContext();
   const [userRole] = useUserCk();
+  const handleLogout = () => {
+    logOut().then(() => {});
+  };
   const btnClass =
     'py-3 my-2 hover:bg-red-700 px-3 rounded btn border-0 flex justify-start hover:text-white w-full';
   const students = (
@@ -23,14 +29,14 @@ const Dashboard = () => {
   const instructor = (
     <>
       {' '}
-      <NavLink to='/dashboard/studentDashboard' className={btnClass}>
+      <NavLink to='/dashboard/instructorDashboard' className={btnClass}>
         Instructor Dashboard
       </NavLink>
-      <NavLink to='/dashboard/studentBookedClasses' className={btnClass}>
-        Booked Classes
+      <NavLink to='/dashboard/instructorClasses' className={btnClass}>
+        My Class
       </NavLink>
-      <NavLink to='/dashboard/studentEnrollClasses' className={btnClass}>
-        Enrolled Classes
+      <NavLink to='/dashboard/instructorAddClasses' className={btnClass}>
+        Add Classes
       </NavLink>
     </>
   );
@@ -65,6 +71,15 @@ const Dashboard = () => {
       <div className='drawer-side'>
         <label htmlFor='my-drawer' className='drawer-overlay'></label>
         <div className='menu p-4 w-80 h-full bg-black text-white block'>
+          <div className='flex justify-center flex-col items-center'>
+            <div className='avatar online'>
+              <div className='w-24 rounded-full'>
+                <img src={user?.photoURL} />
+              </div>
+            </div>
+            <p className='uppercase py-3'>{userRole}</p>
+            {userRole === 'student' && <button>Request Instructor</button>}
+          </div>
           {userRole === 'student'
             ? students
             : userRole === 'instructor'
@@ -75,6 +90,9 @@ const Dashboard = () => {
           <NavLink to='/' className={btnClass}>
             Home
           </NavLink>
+          <button onClick={handleLogout} className={btnClass}>
+            Log Out
+          </button>
         </div>
       </div>
     </div>

@@ -80,6 +80,14 @@ const DashboardTable = ({ tableHead, tableRow, refetch }) => {
                 {data.displayName}
                 <br />
                 <span className='badge badge-ghost badge-sm'>{data.role}</span>
+                {data.request && (
+                  <>
+                    <br />
+                    <span className='badge badge-ghost badge-sm bg-orange-600 text-white capitalize'>
+                      Request {data.request}
+                    </span>
+                  </>
+                )}
               </td>
               <td>
                 <button

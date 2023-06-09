@@ -21,9 +21,9 @@ const Navbar = () => {
   };
   const navBar = (
     <>
-      <NavLink>Home</NavLink>
-      <NavLink>Instructors</NavLink>
-      <NavLink>All Classes</NavLink>
+      <NavLink to='/'>Home</NavLink>
+      <NavLink to='instructors'>Instructors</NavLink>
+      <NavLink to='allClasses'>All Classes</NavLink>
     </>
   );
   return (

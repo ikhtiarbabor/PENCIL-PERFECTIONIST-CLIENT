@@ -15,6 +15,8 @@ import StudentsRoute from './StudentsRoute';
 import AllUser from '../Pages/DashBoard/Admin/AllUser/Alluser';
 import AllClasses from '../Pages/DashBoard/Admin/AllClasses/AllClasses';
 import PendingClasses from '../Pages/DashBoard/Admin/PendingClasses/PendingClasses';
+import RejectClasses from '../Pages/DashBoard/Admin/RejectClasses/RejectClasses';
+import InstructorDashboard from '../Pages/DashBoard/IinstructorDashBoard/InstrucrorDashboard/InstructorDashboard';
 
 const router = createBrowserRouter([
   {
@@ -81,6 +83,22 @@ const router = createBrowserRouter([
           <AdminRoute>
             <PendingClasses></PendingClasses>
           </AdminRoute>
+        ),
+      },
+      {
+        path: 'rejectClasses',
+        element: (
+          <AdminRoute>
+            <RejectClasses />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'instructorDashboard',
+        element: (
+          <>
+            <InstructorDashboard />
+          </>
         ),
       },
     ],

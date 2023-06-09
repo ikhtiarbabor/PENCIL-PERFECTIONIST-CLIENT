@@ -1,21 +1,21 @@
-import ClassesTable from './ClassesTable';
 import useClasses from '../../../../hooks/useClasses';
+import ClassesTable from '../AllClasses/ClassesTable';
 
-const AllClasses = () => {
+const RejectClasses = () => {
   const { classes, refetch } = useClasses();
   const tableHead = ['Image', 'Name', 'Action', 'Details'];
-  const approvedClasses = classes.filter((c) => c.status === 'approved');
+  const rejectClasses = classes.filter((c) => c.status === 'reject');
+
   return (
     <section className='allContainer'>
-      <h1>Total Classes {classes?.length}</h1>
+      <h1>Total Reject Classes {rejectClasses?.length}</h1>
       <ClassesTable
-        tableRow={approvedClasses}
         tableHead={tableHead}
-        use='allClass'
+        tableRow={rejectClasses}
         refetch={refetch}
-      />
+      ></ClassesTable>
     </section>
   );
 };
 
-export default AllClasses;
+export default RejectClasses;
