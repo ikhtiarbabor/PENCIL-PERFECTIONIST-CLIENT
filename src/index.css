@@ -6,7 +6,13 @@
   .btn-primary {
     @apply btn bg-slate-800 hover:bg-slate-500 text-white;
   }
-  .allContainer{
-    @apply max-w-7xl mx-auto px-3
+  .btn-danger {
+    @apply btn bg-red-800 hover:bg-red-500 text-white;
+  }
+  .allContainer {
+    @apply max-w-7xl mx-auto px-3;
+  }
+  .disabled-input {
+    @apply bg-slate-400 border-slate-400 focus:outline-none;
   }
 }

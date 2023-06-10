@@ -17,6 +17,10 @@ import AllClasses from '../Pages/DashBoard/Admin/AllClasses/AllClasses';
 import PendingClasses from '../Pages/DashBoard/Admin/PendingClasses/PendingClasses';
 import RejectClasses from '../Pages/DashBoard/Admin/RejectClasses/RejectClasses';
 import InstructorDashboard from '../Pages/DashBoard/IinstructorDashBoard/InstrucrorDashboard/InstructorDashboard';
+import InstructorRoute from './InstructorRoute';
+import AddClasses from '../Pages/DashBoard/IinstructorDashBoard/AddClasses/AddClasses';
+import InstructorClasses from '../Pages/DashBoard/IinstructorDashBoard/InstructorClasses/InstructorClasses';
+import InstructorAppliedClasses from '../Pages/DashBoard/IinstructorDashBoard/InstructorAppliedClasses/InstructorAppliedClasses';
 
 const router = createBrowserRouter([
   {
@@ -96,9 +100,33 @@ const router = createBrowserRouter([
       {
         path: 'instructorDashboard',
         element: (
-          <>
+          <InstructorRoute>
             <InstructorDashboard />
-          </>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: 'instructorAddClasses',
+        element: (
+          <InstructorRoute>
+            <AddClasses />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: 'instructorClasses/appliedClasses',
+        element: (
+          <InstructorRoute>
+            <InstructorAppliedClasses />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: 'instructorClasses',
+        element: (
+          <InstructorRoute>
+            <InstructorClasses />
+          </InstructorRoute>
         ),
       },
     ],

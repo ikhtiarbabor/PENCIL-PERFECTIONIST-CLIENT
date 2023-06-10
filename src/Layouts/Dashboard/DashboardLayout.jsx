@@ -1,5 +1,5 @@
 import { FaBars } from 'react-icons/fa';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import '../../Pages/DashBoard/dashboardCss/DashBoard.css';
 import useUserCk from '../../hooks/useUserCk';
 
@@ -7,9 +7,11 @@ import useAuthContext from '../../hooks/useAuthContext';
 
 const Dashboard = () => {
   const { logOut, user } = useAuthContext();
+  const navigate = useNavigate();
   const [userRole] = useUserCk();
   const handleLogout = () => {
     logOut().then(() => {});
+    navigate('/');
   };
   const btnClass =
     'py-3 my-2 hover:bg-red-700 px-3 rounded btn border-0 flex justify-start hover:text-white w-full';
@@ -34,6 +36,9 @@ const Dashboard = () => {
       </NavLink>
       <NavLink to='/dashboard/instructorClasses' className={btnClass}>
         My Class
+      </NavLink>
+      <NavLink to='/dashboard/instructorClasses/appliedClasses' className={btnClass}>
+        Applied Classes
       </NavLink>
       <NavLink to='/dashboard/instructorAddClasses' className={btnClass}>
         Add Classes

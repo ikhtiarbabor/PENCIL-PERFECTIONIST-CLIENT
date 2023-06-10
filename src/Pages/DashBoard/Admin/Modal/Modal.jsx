@@ -16,9 +16,17 @@ const Modal = ({ id, data }) => {
         className='modal modal-bottom sm:modal-middle'
       >
         <form method='dialog' className='modal-box'>
-          <h3 className='font-bold text-lg'>{data.instructor_mail}</h3>
+          <h3 className='font-bold text-lg'>{data?.className}</h3>
           <p className='py-4'>
-            Press ESC key or click the button below to close
+            {data.status !== 'approved' ? (
+              data.status === 'pending' ? (
+                <h2>Wait ......</h2>
+              ) : (
+                <h2>Don't Duplicate Class name, Class Image and Details</h2>
+              )
+            ) : (
+              <p>Details</p>
+            )}
           </p>
           <div className='modal-action'>
             {/* if there is a button in form, it will close the modal */}

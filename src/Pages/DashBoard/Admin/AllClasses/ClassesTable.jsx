@@ -11,7 +11,7 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
   const handleStatus = async (id, status = 'reject') => {
     if (status === 'approved') {
       await secureURL
-        .patch(`/allUser/updateStatus/${id}`, { status: 'approved' })
+        .patch(`/allClasses/updateStatus/${id}`, { status: 'approved' })
         .then((res) => {
           console.log(res.data);
           if (res.data.modifiedCount === 1) {
@@ -21,7 +21,7 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
         });
     } else if (status === 'reject') {
       await secureURL
-        .patch(`/allUser/updateStatus/${id}`, { status: 'reject' })
+        .patch(`/allClasses/updateStatus/${id}`, { status: 'reject' })
         .then((res) => {
           console.log(res.data);
           if (res.data.modifiedCount === 1) {
@@ -40,7 +40,7 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
         confirmButtonText: 'Delete',
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await secureURL.delete(`/allUser/delete/${id}`).then((res) => {
+          await secureURL.delete(`/allClasses/delete/${id}`).then((res) => {
             console.log(res.data);
             if (res.data.deletedCount === 1) {
               Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
@@ -99,7 +99,17 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
                 </span>
               </td>
               <td>
-                {use === 'allClass' ? (
+                {use === 'appliedClasses' ? (
+                  <p
+                    className={`capitalize ${
+                      data?.status === 'pending'
+                        ? 'text-orange-400'
+                        : 'text-red-700 font-bold'
+                    }`}
+                  >
+                    {data?.status}
+                  </p>
+                ) : use === 'allClass' ? (
                   <button
                     onClick={() => handleStatus(data?._id, 'delete')}
                     className='btn rounded-full border-red-700 text-red-700 bg-white text-base hover:bg-red-700 hover:text-white'

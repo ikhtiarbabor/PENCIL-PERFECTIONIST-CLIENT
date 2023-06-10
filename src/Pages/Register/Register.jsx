@@ -6,7 +6,7 @@ import { FaGoogle } from 'react-icons/fa';
 const imgHost = import.meta.env.VITE_IMAGE_BB_API_KEY;
 
 const Register = () => {
-  const imageBbURL = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHost}`;
+  const imageBbURL = `https://api.imgbb.com/1/upload?key=${imgHost}`;
   const { user, createUser, googleSignIn, updateUser } = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,7 +31,6 @@ const Register = () => {
         await axios.post(imageBbURL, formData).then((res) => {
           console.log(res.data.data.url);
           updateUser(data.name, res.data.data.url).then(async () => {
-         
             await axios
               .post('http://localhost:5000/users', {
                 email: data.email,
