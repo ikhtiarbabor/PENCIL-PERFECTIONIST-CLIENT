@@ -18,6 +18,7 @@ const AddClasses = () => {
     'Nature and Botanical Illustration',
     'Fantasy and Sci-Fi Art',
   ];
+  const stage = ['Beginner', 'Intermediate', 'Advanced'];
   const imgHost = import.meta.env.VITE_IMAGE_BB_API_KEY;
   const imageBbURL = `https://api.imgbb.com/1/upload?key=${imgHost}`;
   const { register, handleSubmit, reset } = useForm();
@@ -122,20 +123,41 @@ const AddClasses = () => {
               {...register('seat', { required: true })}
             />
           </div>
-        </div>
-        <div className='md:w-2/4 mx-auto pt-5 pb-3'>
-          <select
-            className='border-2 border-black p-3 w-full rounded'
-            {...register('subCategory')}
-            placeholder='Sub category'
-            required
-          >
-            {subCategory.map((subCategory, i) => (
-              <option key={'subCate' + i} value={subCategory}>
-                {subCategory}
-              </option>
-            ))}
-          </select>
+          <div>
+            <label htmlFor='category' className='block py-1 uppercase'>
+              Category
+            </label>
+            <select
+              id='category'
+              className='border-2 border-black p-3 w-full rounded'
+              {...register('subCategory')}
+              placeholder='Sub category'
+              required
+            >
+              {subCategory.map((subCategory, i) => (
+                <option key={'subCate' + i} value={subCategory}>
+                  {subCategory}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor='stage' className='block py-1 uppercase'>
+              Stage
+            </label>
+            <select
+              className='border-2 border-black p-3 w-full rounded'
+              {...register('stage')}
+              placeholder='stage'
+              required
+            >
+              {stage.map((stage, i) => (
+                <option key={'stage' + i} value={stage}>
+                  {stage}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className='md:w-2/4 mx-auto'>
           <label htmlFor='classDetails' className='block py-1 uppercase'>

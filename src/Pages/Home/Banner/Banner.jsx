@@ -2,9 +2,9 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const Banner = () => {
-  // TODO: ADD PARTICLE JS AND BANNER DETAILS TEXT 
+  // TODO: ADD PARTICLE JS AND BANNER DETAILS TEXT
   return (
-    <div className='allContainer h-[570px]'>
+    <div className='allContainer'>
       <Carousel autoPlay={true} infiniteLoop={true}>
         <div>
           <img src='https://i.ibb.co/tzQwBLd/Portraits.jpg' />
