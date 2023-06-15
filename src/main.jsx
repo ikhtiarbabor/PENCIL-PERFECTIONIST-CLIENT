@@ -7,6 +7,7 @@ import router from './routes/Router';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const queryClient = new QueryClient();
+import 'aos/dist/aos.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>

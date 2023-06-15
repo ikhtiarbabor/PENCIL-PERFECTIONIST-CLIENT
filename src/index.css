@@ -15,6 +15,9 @@
   .disabled-input {
     @apply bg-slate-400 border-slate-400 focus:outline-none;
   }
+  .section-head {
+    @apply text-3xl md:text-5xl text-center pt-5 pb-8;
+  }
 }
 /* .box-shadow:hover {
   overflow: hidden;
@@ -25,3 +28,17 @@
   background-color: #fff;
   border: 2px solid #d2d2d2;
 } */
+.popularClassImg:hover .popularClassBtn {
+  color: #fff !important;
+}
+.darkTheme {
+  background-color: #212121;
+  color: #fff;
+}
+.Outlet {
+  min-height: calc(100vh - 150px);
+}
+.active {
+  color: #fff;
+  background-color: #b91c1c;
+}

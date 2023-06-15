@@ -5,7 +5,11 @@ import axios from 'axios';
 const useUserCk = () => {
   const { user, loading } = useAuthContext();
 
-  const { data: userRole, isLoading: isUserLoading } = useQuery({
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['userCk', user?.email],
     enabled: !loading,
     queryFn: async () => {
@@ -17,7 +21,9 @@ const useUserCk = () => {
       return res.data;
     },
   });
-  return [userRole, isUserLoading];
+  const userRole = userData?.role;
+  const _id = userData?._id;
+  return [userRole, isUserLoading, _id, refetch];
 };
 
 export default useUserCk;

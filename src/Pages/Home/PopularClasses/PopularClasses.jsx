@@ -12,10 +12,9 @@ const PopularClasses = () => {
     };
     classesData();
   }, []);
-  console.log(popularClasses);
   return (
     <section className='allContainer my-5'>
-      <h2>Highest Rated Online Courses</h2>
+      <h2 className='section-head'>Highest Rated Online Courses</h2>
       <div className='md:grid grid-cols-3 gap-7'>
         {popularClasses.map((popularClass) => (
           <PopularClassesCard

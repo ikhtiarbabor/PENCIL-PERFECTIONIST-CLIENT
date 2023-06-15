@@ -1,17 +1,28 @@
 import { FaBars } from 'react-icons/fa';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import '../../Pages/DashBoard/dashboardCss/DashBoard.css';
 import useUserCk from '../../hooks/useUserCk';
-
 import useAuthContext from '../../hooks/useAuthContext';
+import axios from 'axios';
+import useTitle from '../../useTitle/useTitle';
 
 const Dashboard = () => {
   const { logOut, user } = useAuthContext();
   const navigate = useNavigate();
-  const [userRole] = useUserCk();
+  const [userRole, , _id] = useUserCk();
+  useTitle('Dashboard')
+
   const handleLogout = () => {
     logOut().then(() => {});
     navigate('/');
+  };
+  const handleRequest = async (id) => {
+    await axios
+      .patch(`http://localhost:5000/users/user/${id}`, 'instructor', {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => console.log(res.data));
   };
   const btnClass =
     'py-3 my-2 hover:bg-red-700 px-3 rounded btn border-0 flex justify-start hover:text-white w-full';
@@ -37,7 +48,10 @@ const Dashboard = () => {
       <NavLink to='/dashboard/instructorClasses' className={btnClass}>
         My Class
       </NavLink>
-      <NavLink to='/dashboard/instructorClasses/appliedClasses' className={btnClass}>
+      <NavLink
+        to='/dashboard/instructorClasses/appliedClasses'
+        className={btnClass}
+      >
         Applied Classes
       </NavLink>
       <NavLink to='/dashboard/instructorAddClasses' className={btnClass}>
@@ -83,7 +97,14 @@ const Dashboard = () => {
               </div>
             </div>
             <p className='uppercase py-3'>{userRole}</p>
-            {userRole === 'student' && <button>Request Instructor</button>}
+            {userRole === 'student' && (
+              <button
+                onClick={() => handleRequest(_id)}
+                className='uppercase bg-green-600 text-white hover:text-green-600 border-0 btn'
+              >
+                Apply Instructor
+              </button>
+            )}
           </div>
           {userRole === 'student'
             ? students

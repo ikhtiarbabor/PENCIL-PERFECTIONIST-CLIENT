@@ -1,20 +1,26 @@
 import { AiFillDelete, AiOutlineCheck } from 'react-icons/ai';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaAmazonPay, FaLink, FaShoppingCart } from 'react-icons/fa';
 import { MdAirlineSeatReclineExtra } from 'react-icons/md';
 import { RxCross1 } from 'react-icons/rx';
 import Modal from '../Modal/Modal';
 import useSecureUrl from '../../../../hooks/useSecureUrl';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import useBooked from '../../../../hooks/useBooked';
+import { Link } from 'react-router-dom';
 const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
   const [secureURL] = useSecureUrl();
+  const { booking } = useBooked();
+  const handleClass = (link) => {
+    window.open(link, '_blank');
+  };
   const handleStatus = async (id, status = 'reject') => {
     if (status === 'approved') {
       await secureURL
         .patch(`/allClasses/updateStatus/${id}`, { status: 'approved' })
         .then((res) => {
           console.log(res.data);
-          if (res.data.modifiedCount === 1) {
+          if (res.data?.modifiedCount === 1) {
             toast(`✔️You Approved This Class`);
             refetch();
           }
@@ -24,7 +30,7 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
         .patch(`/allClasses/updateStatus/${id}`, { status: 'reject' })
         .then((res) => {
           console.log(res.data);
-          if (res.data.modifiedCount === 1) {
+          if (res.data?.modifiedCount === 1) {
             toast(`❌ You Reject This Class`);
             refetch();
           }
@@ -42,7 +48,7 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
         if (result.isConfirmed) {
           await secureURL.delete(`/allClasses/delete/${id}`).then((res) => {
             console.log(res.data);
-            if (res.data.deletedCount === 1) {
+            if (res.data?.deletedCount === 1) {
               Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
               refetch();
             }
@@ -50,6 +56,17 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
         }
       });
     }
+  };
+  const handleRemoveBookmark = async (id) => {
+    const bookingId = booking.find((b) => b.classId === id);
+    await secureURL
+      .delete(`/classes/deleteBooked/${bookingId?._id}`)
+      .then((res) => {
+        if (res.data?.deletedCount === 1) {
+          toast(`❌ You delete this class from bookmark`);
+          refetch();
+        }
+      });
   };
   return (
     <div className='overflow-x-auto'>
@@ -76,30 +93,45 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
                   <div>
                     <div className='font-bold'>{data?.className}</div>
                     <span className='badge badge-ghost badge-sm'>
-                      {data.instructor}
+                      {data?.instructor}
                     </span>
                     <br />
                     <span className='badge badge-ghost badge-sm'>
-                      {data.instructor_mail}
+                      {data?.instructor_mail}
                     </span>
                   </div>
                 </div>
               </td>
               <td>
-                ${data.price}
+                ${data?.price}
                 <br />
                 <span className='badge badge-ghost badge-sm'>
                   <MdAirlineSeatReclineExtra className='text-red-500' />
-                  {data.seat}
+                  {data?.seat}
                 </span>
                 <br />
                 <span className='badge badge-ghost badge-sm'>
                   <FaShoppingCart className='text-green-500'></FaShoppingCart>
-                  {data.totalEnrolled}
+                  {data?.totalEnrolled}
                 </span>
               </td>
               <td>
-                {use === 'appliedClasses' ? (
+                {use === 'enrolled' ? (
+                  <button
+                    onClick={() =>
+                      handleClass('https://meet.google.com/wxo-jnoo-qmw')
+                    }
+                    className='btn rounded-full border-blue-700 text-blue-700 bg-white text-base hover:bg-blue-700 hover:text-white'
+                  >
+                    <FaLink className='text-4xl' />
+                  </button>
+                ) : use === 'booking' ? (
+                  <Link to='/dashboard/payment'>
+                    <button className='btn rounded-full border-green-700 text-green-700 bg-white text-base hover:bg-green-700 hover:text-white'>
+                      <FaAmazonPay className='text-4xl' />
+                    </button>
+                  </Link>
+                ) : use === 'appliedClasses' ? (
                   <p
                     className={`capitalize ${
                       data?.status === 'pending'
@@ -150,7 +182,19 @@ const ClassesTable = ({ tableHead, tableRow, use, refetch }) => {
                 )}
               </td>
               <th>
-                <Modal id={data._id} data={data}></Modal>
+                {use === 'booking' ? (
+                  <>
+                    <button
+                      onClick={() => handleRemoveBookmark(data?._id)}
+                      className='btn rounded-full border-red-700 text-red-700 bg-white text-base hover:bg-red-700 hover:text-white mr-1'
+                    >
+                      <AiFillDelete></AiFillDelete>
+                    </button>
+                    <Modal id={data?._id} data={data} use='booking'></Modal>
+                  </>
+                ) : (
+                  <Modal id={data?._id} data={data}></Modal>
+                )}
               </th>
             </tr>
           ))}

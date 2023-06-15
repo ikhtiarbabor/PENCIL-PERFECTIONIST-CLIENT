@@ -1,10 +1,19 @@
 import { Link, NavLink } from 'react-router-dom';
 import useAuthContext from '../../../hooks/useAuthContext';
-import { FaUserAlt } from 'react-icons/fa';
+import { FaMoon, FaUserAlt } from 'react-icons/fa';
 import useUserCk from '../../../hooks/useUserCk';
+import { useState } from 'react';
 
 const Navbar = () => {
   const [userRole] = useUserCk();
+  const [theme, setTheme] = useState(false);
+  const handleDarkTheme = () => {
+    const body = document.body;
+    setTheme(!theme);
+    body.classList.toggle('darkTheme');
+    const card = document.getElementById('darkBg');
+    card.classList.add('text-white border-2 border-white');
+  };
   const dashboard =
     userRole === 'admin'
       ? '/dashboard/adminDashBoard'
@@ -21,14 +30,29 @@ const Navbar = () => {
   };
   const navBar = (
     <>
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='instructors'>Instructors</NavLink>
-      <NavLink to='allClasses'>All Classes</NavLink>
+      <NavLink
+        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        to='/'
+      >
+        Home
+      </NavLink>
+      <NavLink
+        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        to='instructors'
+      >
+        Instructors
+      </NavLink>
+      <NavLink
+        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        to='allClasses'
+      >
+        All Classes
+      </NavLink>
     </>
   );
   return (
-    <header className='allContainer bg-slate-700'>
-      <div className='navbar bg-transparent text-white m'>
+    <header className='bg-slate-700'>
+      <div className='navbar bg-transparent text-white allContainer'>
         <div className='navbar-start'>
           <div className='dropdown'>
             <label tabIndex={0} className='lg:hidden'>
@@ -57,7 +81,7 @@ const Navbar = () => {
           <a className=''>
             <img
               src='https://i.ibb.co/P9XMgDd/Logo.png'
-              className='w-[140px]'
+              className='w-[120px]'
               alt=''
             />
           </a>
@@ -68,20 +92,33 @@ const Navbar = () => {
         <div className='navbar-end'>
           {user ? (
             <div className='dropdown dropdown-end'>
-              <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
-                <div className='w-10 rounded-full border-red-600'>
-                  <img src={user?.photoURL || <FaUserAlt />} />
+              <div className='flex items-center'>
+                <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+                  <div className='w-10 rounded-full border-red-600'>
+                    <img src={user?.photoURL || <FaUserAlt />} />
+                  </div>
+                </label>
+                <div className='ml-2'>
+                  {theme ? (
+                    <FaMoon
+                      onClick={handleDarkTheme}
+                      className='text-black text-2xl'
+                    ></FaMoon>
+                  ) : (
+                    <FaMoon
+                      id='dark'
+                      onClick={handleDarkTheme}
+                      className='text-text-white text-2xl'
+                    ></FaMoon>
+                  )}
                 </div>
-              </label>
+              </div>
               <ul
                 tabIndex={0}
                 className='mt-3 p-2 shadow menu menu-sm dropdown-content bg-slate-400 rounded-box w-52 z-50'
               >
                 <li>
-                  <Link className='justify-between'>
-                    Profile
-                    <span className='badge'>New</span>
-                  </Link>
+                  <Link>Profile</Link>
                 </li>
                 <li>
                   <Link to={dashboard} className='justify-between'>
@@ -97,9 +134,23 @@ const Navbar = () => {
               </ul>
             </div>
           ) : (
-            <Link to='/login' className=''>
-              Login
-            </Link>
+            <>
+              <Link to='/login' className=''>
+                Login
+              </Link>
+              {theme ? (
+                <FaMoon
+                  onClick={handleDarkTheme}
+                  className='text-black text-2xl'
+                ></FaMoon>
+              ) : (
+                <FaMoon
+                  id='dark'
+                  onClick={handleDarkTheme}
+                  className='text-text-white text-2xl'
+                ></FaMoon>
+              )}
+            </>
           )}
         </div>
       </div>

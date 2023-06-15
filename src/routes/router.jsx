@@ -21,6 +21,8 @@ import InstructorRoute from './InstructorRoute';
 import AddClasses from '../Pages/DashBoard/IinstructorDashBoard/AddClasses/AddClasses';
 import InstructorClasses from '../Pages/DashBoard/IinstructorDashBoard/InstructorClasses/InstructorClasses';
 import InstructorAppliedClasses from '../Pages/DashBoard/IinstructorDashBoard/InstructorAppliedClasses/InstructorAppliedClasses';
+import Payment from '../Pages/DashBoard/Payment/Payment';
+import AllClassesPage from '../Pages/AllClassesPage/AllClassesPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+      { path: '/allClasses', element: <AllClassesPage /> },
     ],
   },
   {
@@ -128,6 +131,10 @@ const router = createBrowserRouter([
             <InstructorClasses />
           </InstructorRoute>
         ),
+      },
+      {
+        path: 'payment',
+        element: <Payment />,
       },
     ],
   },
