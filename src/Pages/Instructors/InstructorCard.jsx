@@ -1,14 +1,14 @@
 const InstructorCard = ({ instructor }) => {
   const { photoURL, displayName } = instructor;
   return (
-    <div className=' my-3 md:my-0 h-64'>
+    <div className=' my-3 md:my-0'>
       <div
         className='card card-compact w-96 bg-transparent border-2 border-white shadow-xl py-6'
         data-aos='fade-up'
         data-aos-duration='1000'
       >
         <figure>
-          <img src={photoURL} alt={displayName} />
+          <img src={photoURL} alt={displayName} className='h-[150px] rounded' />
         </figure>
         <div className='card-body'>
           <h2 className='card-title'>{displayName}</h2>

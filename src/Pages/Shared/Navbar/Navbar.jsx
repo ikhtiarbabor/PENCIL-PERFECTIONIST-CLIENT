@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuthContext from '../../../hooks/useAuthContext';
 import { FaMoon, FaUserAlt } from 'react-icons/fa';
 import useUserCk from '../../../hooks/useUserCk';
+import { HashLink } from 'react-router-hash-link';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -31,31 +32,43 @@ const Navbar = () => {
   const navBar = (
     <>
       <NavLink
-        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        className='py-3 px-3 mr-1 rounded  hover:bg-red-800 hover:text-white'
         to='/'
       >
         Home
       </NavLink>
       <NavLink
-        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        className='py-3 px-3 mr-1 rounded  hover:bg-red-800 hover:text-white'
         to='instructors'
       >
         Instructors
       </NavLink>
       <NavLink
-        className='py-3 px-5 mr-2 rounded  hover:bg-red-800 hover:text-white'
+        className='py-3 px-3 mr-1 rounded  hover:bg-red-800 hover:text-white'
         to='allClasses'
       >
         All Classes
       </NavLink>
+      <HashLink
+        className='py-3 px-3 mr-1 rounded  hover:bg-red-800 hover:text-white'
+        to='/#aboutUs'
+      >
+        About Us
+      </HashLink>
+      <HashLink
+        className='py-3 px-3 mr-1 rounded  hover:bg-red-800 hover:text-white'
+        to='/#popularInstructor'
+      >
+        Popular Instructor
+      </HashLink>
     </>
   );
   return (
     <header className='bg-slate-700'>
-      <div className='navbar bg-transparent text-white allContainer'>
+      <div className='navbar bg-transparent text-white allContainer z-10'>
         <div className='navbar-start'>
           <div className='dropdown'>
-            <label tabIndex={0} className='lg:hidden'>
+            <label tabIndex={0} className='lg:hidden z-10'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-5 w-5'
@@ -73,7 +86,7 @@ const Navbar = () => {
             </label>
             <div
               tabIndex={0}
-              className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
+              className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-slate-500 rounded-box w-52 z-20'
             >
               {navBar}
             </div>

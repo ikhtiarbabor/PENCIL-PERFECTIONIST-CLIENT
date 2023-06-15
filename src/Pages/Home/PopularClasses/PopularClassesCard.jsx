@@ -75,8 +75,8 @@ const PopularClassesCard = ({ popularClass }) => {
   const handleEnrolled = async (id) => {
     if (!user) {
       Swal.fire({
-        title: 'Bookmark',
-        text: 'if you want to bookmark this please login',
+        title: 'Enroll',
+        text: 'Are you sure you want to Enroll this Course?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

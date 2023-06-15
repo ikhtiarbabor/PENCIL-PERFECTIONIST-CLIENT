@@ -11,7 +11,7 @@ const PopularInstructors = () => {
   const popularInstructor = instructors.slice(0, 6);
   console.log(popularInstructor);
   return (
-    <section className='allContainer my-7'>
+    <section className='allContainer my-7' id='popularInstructor'>
       <h2 className='section-head'>Popular Instructor</h2>
       <div className='md:grid grid-cols-3 gap-7'>
         {popularInstructor.map((instructor) => (
