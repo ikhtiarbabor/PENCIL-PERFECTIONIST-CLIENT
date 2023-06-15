@@ -9,7 +9,7 @@ const Dashboard = () => {
   const { logOut, user } = useAuthContext();
   const navigate = useNavigate();
   const [userRole, , _id] = useUserCk();
-  useTitle('Dashboard')
+  useTitle('Dashboard');
 
   const handleLogout = () => {
     logOut().then(() => {});
@@ -81,7 +81,7 @@ const Dashboard = () => {
   return (
     <div className='drawer'>
       <input id='my-drawer' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content'>
+      <div className='drawer-content min-h-screen'>
         <Outlet />
       </div>
       <label htmlFor='my-drawer' className='btn btn-primary drawer-button'>

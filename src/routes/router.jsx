@@ -23,6 +23,8 @@ import InstructorClasses from '../Pages/DashBoard/IinstructorDashBoard/Instructo
 import InstructorAppliedClasses from '../Pages/DashBoard/IinstructorDashBoard/InstructorAppliedClasses/InstructorAppliedClasses';
 import Payment from '../Pages/DashBoard/Payment/Payment';
 import AllClassesPage from '../Pages/AllClassesPage/AllClassesPage';
+import Instructors from '../Pages/Instructors/Instructors';
+import ViewClasses from '../Pages/ViewClasses/ViewClasses';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,17 @@ const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
       { path: '/allClasses', element: <AllClassesPage /> },
+      { path: '/instructors', element: <Instructors /> },
+      {
+        path: '/viewClasses/:id',
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/class/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ViewClasses />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {

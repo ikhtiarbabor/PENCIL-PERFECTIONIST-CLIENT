@@ -2,7 +2,7 @@ import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import useUserCk from '../../../hooks/useUserCk';
 // import useSecureUrl from '../../../hooks/useSecureUrl'
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -97,7 +97,12 @@ const PopularClassesCard = ({ popularClass }) => {
         <div className='flex'>
           <p>
             {classDetails.slice(0, 60)}...{' '}
-            <button className='text-blue-700 underline"'>View Course</button>
+            <Link
+              to={`/viewClasses/${_id}`}
+              className='text-blue-700 underline"'
+            >
+              View Course
+            </Link>
           </p>
         </div>
         <div className='card-actions flex justify-between'>
@@ -111,12 +116,12 @@ const PopularClassesCard = ({ popularClass }) => {
           ) : enroll !== undefined ? (
             <button
               disabled
-              className='btn btn-primary disabled:bg-gray-300 disabled:text-black'
+              className='btn btn-primary disabled:bg-green-400 disabled:text-black'
             >
               enrolled
             </button>
           ) : (
-            <button className='btn btn-primary bg-gray-300 text-black'>
+            <button className='btn btn-primary bg-red-700 text-white border-red-700'>
               Enroll Now
             </button>
           )}
