@@ -1,5 +1,6 @@
 import useClasses from '../../hooks/useClasses';
 import PopularClassesCard from '../Home/PopularClasses/PopularClassesCard';
+import AllPageBanner from '../Shared/allPageBanner/allPageBanner';
 
 const AllClassesPage = () => {
   const { classes } = useClasses();
@@ -24,59 +25,78 @@ const AllClassesPage = () => {
   );
   return (
     <>
-      <section className='allContainer'>
+      <AllPageBanner >all classes</AllPageBanner>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Portraits Drawing</h2>
-        {portraits.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {portraits.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Still Life Drawing</h2>
-        {stillLife.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {stillLife.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Animals Drawing</h2>
-        {animals.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {animals.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Cartooning and Comics</h2>
-        {cartoon.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {cartoon.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Concept Art</h2>
-        {concept.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {concept.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Fashion Illustration</h2>
-        {fashion.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {fashion.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Architectural Drawings</h2>
-        {architectural.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {architectural.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Nature and Botanical Illustration</h2>
-        {nature.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {nature.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
-      <section className='allContainer'>
+      <section className='allContainer my-8'>
         <h2 className='section-head'> Fantasy and Sci-Fi Art</h2>
-        {fantasy.map((c) => (
-          <PopularClassesCard popularClass={c} key={c._id} />
-        ))}
+        <div className='md:grid grid-cols-3 justify-center'>
+          {fantasy.map((c) => (
+            <PopularClassesCard popularClass={c} key={c._id} />
+          ))}
+        </div>
       </section>
     </>
   );

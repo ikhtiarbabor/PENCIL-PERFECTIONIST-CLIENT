@@ -1,10 +1,10 @@
 import ClassesTable from './ClassesTable';
-import useClasses from '../../../../hooks/useClasses';
+import useAllClassesAdmin from '../../../../hooks/useAllClassesAdmin';
 
 const AllClasses = () => {
-  const { classes, refetch } = useClasses();
+  const { classesAdmin, refetch } = useAllClassesAdmin();
   const tableHead = ['Image', 'Name', 'Action', 'Details'];
-  const approvedClasses = classes.filter((c) => c.status === 'approved');
+  const approvedClasses = classesAdmin.filter((c) => c.status === 'approved');
   return (
     <section className='allContainer'>
       <h1>Total Classes {approvedClasses?.length}</h1>

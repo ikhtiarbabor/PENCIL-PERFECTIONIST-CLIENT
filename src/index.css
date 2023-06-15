@@ -19,15 +19,6 @@
     @apply text-3xl md:text-5xl text-center pt-5 pb-8;
   }
 }
-/* .box-shadow:hover {
-  overflow: hidden;
-  position: relative;
-  transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  padding: 28px 28px 32px;
-  border-radius: 8px;
-  background-color: #fff;
-  border: 2px solid #d2d2d2;
-} */
 .popularClassImg:hover .popularClassBtn {
   color: #fff !important;
 }
@@ -36,9 +27,12 @@
   color: #fff;
 }
 .Outlet {
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 530px);
 }
 .active {
   color: #fff;
   background-color: #b91c1c;
+}
+.bg-banner {
+  background-color: rgba(255, 0, 0, 0.39);
 }

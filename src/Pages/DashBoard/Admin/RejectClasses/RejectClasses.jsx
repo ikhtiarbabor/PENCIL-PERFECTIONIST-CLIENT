@@ -1,10 +1,10 @@
-import useClasses from '../../../../hooks/useClasses';
+import useAllClassesAdmin from '../../../../hooks/useAllClassesAdmin';
 import ClassesTable from '../AllClasses/ClassesTable';
 
 const RejectClasses = () => {
-  const { classes, refetch } = useClasses();
+  const { classesAdmin, refetch } = useAllClassesAdmin();
   const tableHead = ['Image', 'Name', 'Action', 'Details'];
-  const rejectClasses = classes.filter((c) => c.status === 'reject');
+  const rejectClasses = classesAdmin.filter((c) => c.status === 'reject');
 
   return (
     <section className='allContainer'>
