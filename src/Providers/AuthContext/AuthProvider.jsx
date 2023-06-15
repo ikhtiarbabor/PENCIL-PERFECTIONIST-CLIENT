@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         await axios
-          .post('http://localhost:5000/jwt', {
+          .post('https://pencil-perfectionist-server.vercel.app/jwt', {
             email: currentUser.email,
           })
           .then((res) => {

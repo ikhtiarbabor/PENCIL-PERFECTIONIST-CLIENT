@@ -11,7 +11,7 @@ const useAllClassesAdmin = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/allClasses/admin`,
+        `https://pencil-perfectionist-server.vercel.app/allClasses/admin`,
         config
       );
       return res.data;

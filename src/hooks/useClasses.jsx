@@ -8,7 +8,9 @@ const useClasses = () => {
     queryKey: ['allClasses', user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/allClasses`);
+      const res = await axios.get(
+        `https://pencil-perfectionist-server.vercel.app/allClasses`
+      );
       return res.data;
     },
   });

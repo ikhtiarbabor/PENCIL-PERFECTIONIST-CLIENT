@@ -15,7 +15,7 @@ const useUserCk = () => {
     queryFn: async () => {
       const token = localStorage.getItem('token');
       const res = await axios.get(
-        `http://localhost:5000/users/user/${user?.email}`,
+        `https://pencil-perfectionist-server.vercel.app/users/user/${user?.email}`,
         { headers: { authorization: `bearer ${token}` } }
       );
       return res.data;

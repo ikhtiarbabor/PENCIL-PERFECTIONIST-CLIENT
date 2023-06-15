@@ -7,7 +7,9 @@ const PopularClasses = () => {
   useEffect(() => {
     const classesData = async () => {
       await axios
-        .get('http://localhost:5000/classes/popularClasses')
+        .get(
+          'https://pencil-perfectionist-server.vercel.app/classes/popularClasses'
+        )
         .then((res) => setPopularClasses(res.data));
     };
     classesData();

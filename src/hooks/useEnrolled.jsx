@@ -13,7 +13,7 @@ const useEnrolled = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/classes/enrolled/${user?.email}`,
+        `https://pencil-perfectionist-server.vercel.app/classes/enrolled/${user?.email}`,
         config
       );
       return res.data;

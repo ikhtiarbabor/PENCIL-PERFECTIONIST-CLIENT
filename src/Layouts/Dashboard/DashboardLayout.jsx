@@ -17,11 +17,15 @@ const Dashboard = () => {
   };
   const handleRequest = async (id) => {
     await axios
-      .patch(`http://localhost:5000/users/user/${id}`, 'instructor', {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
-      })
+      .patch(
+        `https://pencil-perfectionist-server.vercel.app/users/user/${id}`,
+        'instructor',
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
       .then((res) => console.log(res.data));
   };
   const btnClass =

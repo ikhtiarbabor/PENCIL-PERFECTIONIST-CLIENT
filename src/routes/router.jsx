@@ -40,7 +40,9 @@ const router = createBrowserRouter([
       {
         path: '/viewClasses/:id',
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/class/${params.id}`),
+          fetch(
+            `https://pencil-perfectionist-server.vercel.app/class/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <ViewClasses />

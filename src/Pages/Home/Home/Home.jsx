@@ -1,13 +1,17 @@
+import AboutUs from '../AboutUs/AboutUs';
 import Banner from '../Banner/Banner';
+import CounterSection from '../CounterSection/CounterSection';
 import PopularClasses from '../PopularClasses/PopularClasses';
-import PopularInstructor from '../PopularInstructor/PopularInstructor';
+import PopularInstructors from '../PopularInstructors/PopularInstructors';
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
+      <CounterSection />
       <PopularClasses />
-      <PopularInstructor />
+      <AboutUs />
+      <PopularInstructors />
     </div>
   );
 };

@@ -42,7 +42,7 @@ const PopularClassesCard = ({ popularClass }) => {
     } else {
       await axios
         .post(
-          'http://localhost:5000/classes/booked',
+          'https://pencil-perfectionist-server.vercel.app/classes/booked',
           {
             email: user?.email,
             classId: id,
@@ -60,13 +60,50 @@ const PopularClassesCard = ({ popularClass }) => {
   const handleRemoveBookmark = async (id) => {
     console.log(id);
     await axios
-      .delete(`http://localhost:5000/classes/deleteBooked/${id}`, config)
+      .delete(
+        `https://pencil-perfectionist-server.vercel.app/classes/deleteBooked/${id}`,
+        config
+      )
       .then((res) => {
         if (res.data.deletedCount === 1) {
           toast(`❌ You delete this class from bookmark`);
           refetch();
         }
       });
+  };
+
+  const handleEnrolled = async (id) => {
+    if (!user) {
+      Swal.fire({
+        title: 'Bookmark',
+        text: 'if you want to bookmark this please login',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Login',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+    } else {
+      await axios
+        .post(
+          'https://pencil-perfectionist-server.vercel.app/classes/booked',
+          {
+            email: user?.email,
+            classId: id,
+          },
+          config
+        )
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast(`✔️You This Class for Enroll`);
+            navigate('/dashboard/studentBookedClasses');
+          }
+        });
+    }
   };
   return (
     <div
@@ -121,7 +158,10 @@ const PopularClassesCard = ({ popularClass }) => {
               enrolled
             </button>
           ) : (
-            <button className='btn btn-primary bg-red-700 text-white border-red-700'>
+            <button
+              onClick={() => handleEnrolled(_id)}
+              className='btn btn-primary bg-red-700 text-white border-red-700'
+            >
               Enroll Now
             </button>
           )}

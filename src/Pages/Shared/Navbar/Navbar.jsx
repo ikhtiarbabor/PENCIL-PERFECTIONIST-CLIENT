@@ -135,7 +135,7 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to='/login' className=''>
+              <Link to='/login' className='px-3'>
                 Login
               </Link>
               {theme ? (

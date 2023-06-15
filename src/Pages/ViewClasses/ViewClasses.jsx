@@ -49,7 +49,7 @@ const VewClasses = () => {
     } else {
       await axios
         .post(
-          'http://localhost:5000/classes/booked',
+          'https://pencil-perfectionist-server.vercel.app/classes/booked',
           {
             email: user?.email,
             classId: id,
@@ -66,7 +66,10 @@ const VewClasses = () => {
   };
   const handleRemoveBookmark = async (id) => {
     await axios
-      .delete(`http://localhost:5000/classes/deleteBooked/${id}`, config)
+      .delete(
+        `https://pencil-perfectionist-server.vercel.app/classes/deleteBooked/${id}`,
+        config
+      )
       .then((res) => {
         if (res.data.deletedCount === 1) {
           toast(`❌ You delete this class from bookmark`);
@@ -92,7 +95,7 @@ const VewClasses = () => {
     } else {
       await axios
         .post(
-          'http://localhost:5000/classes/booked',
+          'https://pencil-perfectionist-server.vercel.app/classes/booked',
           {
             email: user?.email,
             classId: id,

@@ -3,13 +3,14 @@ import useAuthContext from '../../hooks/useAuthContext';
 import { FaGoogle } from 'react-icons/fa';
 import axios from 'axios';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 const Login = () => {
   //TODO: UPDATE UI ADD GITHUB LOGIN SYSTEM ,ADD SHOW PASSWORD HIDE PASSWORD
   const { signIn, googleSignIn, user } = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/';
-  console.log(from);
+  const [error, setError] = useState('');
   const {
     register,
     handleSubmit,
@@ -21,14 +22,14 @@ const Login = () => {
       .then(() => {
         navigate(from, { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err.message));
   };
   const handleGoogleLogin = () => {
     googleSignIn()
       .then(async (result) => {
         const { email, displayName, photoURL } = result.user;
         await axios
-          .post('http://localhost:5000/users', {
+          .post('https://pencil-perfectionist-server.vercel.app/users', {
             email,
             displayName,
             photoURL,
@@ -37,7 +38,7 @@ const Login = () => {
           .then((data) => console.log(data.data));
         navigate(from, { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err.message));
   };
   return (
     <>
@@ -80,6 +81,7 @@ const Login = () => {
               </div>
 
               <input type='submit' className='btn-primary my-3' />
+              <p className='text-red-500'>{error}</p>
             </form>
 
             <div className='divider'>OR</div>

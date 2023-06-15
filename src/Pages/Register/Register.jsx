@@ -32,7 +32,7 @@ const Register = () => {
           console.log(res.data.data.url);
           updateUser(data.name, res.data.data.url).then(async () => {
             await axios
-              .post('http://localhost:5000/users', {
+              .post('https://pencil-perfectionist-server.vercel.app/users', {
                 email: data.email,
                 displayName: data.name,
                 photoURL: res.data,
@@ -51,7 +51,7 @@ const Register = () => {
       .then(async (result) => {
         const { email, displayName, photoURL } = result.user;
         await axios
-          .post('http://localhost:5000/users', {
+          .post('https://pencil-perfectionist-server.vercel.app/users', {
             email,
             displayName,
             photoURL,

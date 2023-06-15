@@ -13,16 +13,16 @@ const useBooked = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/classes/booked/${user?.email}`,
+        `https://pencil-perfectionist-server.vercel.app/classes/booked/${user?.email}`,
         config
       );
       return res.data;
     },
   });
   const bookingClass = booking.map((booking) =>
-  classes.find((c) => c._id === booking.classId)
-);
-  return { booking, refetch,bookingClass };
+    classes.find((c) => c._id === booking.classId)
+  );
+  return { booking, refetch, bookingClass };
 };
 
 export default useBooked;
