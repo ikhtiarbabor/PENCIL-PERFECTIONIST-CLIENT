@@ -3,7 +3,7 @@ import moment from 'moment/moment';
 const Footer = () => {
   return (
     <footer className='bg-slate-700'>
-      <div className='footer p-10 bg-transparent text-white allContainer'>
+      <div className='footer p-10 bg-transparent text-white allContainer text-center'>
         <div>
           <img src='https://i.ibb.co/P9XMgDd/Logo.png' className='w-[350px]' />
           <p>Pencil Perfectionist</p>

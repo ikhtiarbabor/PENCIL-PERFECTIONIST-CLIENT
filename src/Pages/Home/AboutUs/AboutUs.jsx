@@ -1,7 +1,10 @@
 const AboutUs = () => {
   return (
-    <section id="aboutUs" className='py-12 bg-[url(https://i.ibb.co/h2GxGMz/IMG-5373-0.jpg)] bg-[rgba(0,0,0,.7)] text-white bg-blend-multiply bg-fixed bg-cover bg-center'>
-      <div className='allContainer grid grid-cols-2 gap-7'>
+    <section
+      id='aboutUs'
+      className='py-12 bg-[url(https://i.ibb.co/h2GxGMz/IMG-5373-0.jpg)] bg-[rgba(0,0,0,.7)] text-white bg-blend-multiply bg-fixed bg-cover bg-center'
+    >
+      <div className='allContainer grid md:grid-cols-2 gap-7'>
         <div>
           <img
             src='https://i.ibb.co/SRq3jH2/professional-artist-painting-a-picture-on-canvas-FKG2-CJ.jpg'

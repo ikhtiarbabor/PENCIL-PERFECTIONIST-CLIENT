@@ -13,7 +13,7 @@ const PopularInstructors = () => {
   return (
     <section className='allContainer my-7' id='popularInstructor'>
       <h2 className='section-head'>Popular Instructor</h2>
-      <div className='md:grid grid-cols-3 gap-7'>
+      <div className='grid md:grid-cols-2  justify-center lg:grid-cols-3 gap-7'>
         {popularInstructor.map((instructor) => (
           <InstructorCard
             instructor={instructor}

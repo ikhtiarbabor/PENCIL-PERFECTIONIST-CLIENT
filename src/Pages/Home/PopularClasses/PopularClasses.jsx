@@ -17,7 +17,7 @@ const PopularClasses = () => {
   return (
     <section className='allContainer my-5'>
       <h2 className='section-head'>Highest Rated Online Courses</h2>
-      <div className='md:grid grid-cols-3 gap-7'>
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 w-full mx-auto justify-center gap-7'>
         {popularClasses.map((popularClass) => (
           <PopularClassesCard
             popularClass={popularClass}
