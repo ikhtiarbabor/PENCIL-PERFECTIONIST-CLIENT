@@ -27,9 +27,6 @@ const Banner = () => {
         <div>
           <img src='https://i.ibb.co/z2D9FX0/Land-scape.jpg' />
         </div>
-        <div>
-          <img src='https://i.ibb.co/6F3jRV0/Nature-and-Botanical.jpg' />
-        </div>
       </Carousel>
     </div>
   );
